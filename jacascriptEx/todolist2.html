@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+*{
+  box-sizing: border-box;
+  font-family: 'Roboto';
+}
+
+body{
+  background-color: #f5e556;
+  background-image: linear-gradient(19deg, #f5e556 0%,    #96daa7 100%);
+
+}
+
+.container{
+  width: 50%;
+  height: 100px;
+  position: absolute;
+  left: 28%;
+  margin-top: 10%;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+ul li{
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+  box-shadow: 0px 10px 15px #666;
+/*Making the list items unselectable    */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/*Make all odd list items different color  */
+ul li:nth-child(odd){
+  background: #f9f9f9;
+}
+
+/*Darken on hover  */
+ul li:hover{
+  background: #ddd;
+}
+
+/*When clicked on, add background color and strike out  */
+ul li.checked{
+  background: #ACBB72;
+  color: #fff;
+  text-decoration: line-through;
+  border: 0.5px solid black;
+}
+
+ul li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+
+/* Style the close button */
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+}
+
+.close:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+
+/* Style the header */
+.header {
+  background-color: #EFD160;
+  padding: 30px 40px;
+  color: #5C4319;
+  text-align: center;
+  border-radius: 15px 15px 0 0;
+  box-shadow: 0px 10px 15px #666;
+}
+
+.header:after{
+  content: "";
+  display: table;
+  clear: both;
+}
+
+input{
+  margin: 0;
+  border:none;
+  border-radius: 0;
+  width: 75%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+
+.addList{
+  padding: 10px;
+  width: 25%;
+  background: #C7AB7B;
+  color: #5C4319;;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
+}
+
+.addBtn:hover {
+  background-color: #bbb;
+}
+
+h2{
+  font-size: 32px;
+  font-weight: 700;
+}
+
+
+
+</style>
+<body>
+    <div class="container">
+    <div id="myDiv" class="header">
+    <h2>YouDo List</h2>
+    <input type="text" id="input" placeholder="New Title...">
+    <span class="addList">Add</span>
+  </div>
+  
+  <ul id="myUl">
+    <li>Walk dog<span class="close">x</span></li>
+    <li class="checked">Code to-do list<span class="close">x</span></li>  
+    <li>Study for bio exam<span class="close">x</span></li>
+    <li>Do groceries<span class="close">x</span></li>
+    <li>Pickup stephanie<span class="close">x</span></li>
+  </ul>
+    
+  </div>
+
+  <script>
+    // Create a "close" button and append it to each list item
+    // var myNodelist = document.getElementsByTagName('li');
+    // for(var i = 0; i < myNodelist.length; i++){
+    //     var span = document.createElement('span');
+    //     var txt = document.createTextNode('\u00D7');
+    //     span.className = 'close';
+    //     span.appendChild(txt);
+    //     myNodelist[i].appendChild(span);
+    // }
+
+    // Click on a close button to hide the current list item
+    var close = document.getElementsByClassName("close");
+    for(var i = 0; i < close.length; i++){
+        close[i].addEventListener('click', function(e){
+            var div = e.target.parentNode;
+            div.style.display = 'none';
+        })
+    }
+
+    // Add a "checked" symbol when clicking on a list item
+    var list = document.querySelector('ul');
+    list.addEventListener('click',function(ev){
+        if(ev.target.tagName === 'LI'){
+            ev.target.classList.toggle('checked');
+        }
+    }, false)
+
+    // Create a new list item when clicking on the "Add" button
+    var add = document.querySelector('.addList')
+    function newElement(){
+        
+        add.addEventListener('click',function(){
+            console.log('add실행')
+        
+        var li = document.createElement('li');
+        var inputValue = document.getElementById('input').value;
+        li.textContent = inputValue;
+
+        if(inputValue === ''){
+            alert('값을 입력해주세요!');
+        } else{
+            document.getElementById('myUl').appendChild(li);
+        }
+        document.getElementById('input').value = '';
+
+            var span = document.createElement('span');
+            var txt = document.createTextNode('\u00D7');
+            span.className = 'close';
+            span.appendChild(txt);
+            li.appendChild(span);
+
+            for(var i = 0; i < close.length; i++){
+            close[i].addEventListener('click', function(e){
+                var div = e.target.parentNode;
+                div.style.display = 'none';
+            })
+        }
+    })
+    console.log(document.getElementById('myUl'))
+    }newElement()
+    
+
+  </script>
+  </body>
+</html>

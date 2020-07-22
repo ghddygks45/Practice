@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{margin:0;padding:0}
+    #restorant_wrap{position:relative;background:orange;width:400px;height:400px}
+    button{position:absolute;right:0;bottom:0;border:0;width:120px;height:40px;background:red;color:#fff}
+    #restorant img{display:none;width:400px;height:400px}
+    #menu_wrap{position:relative;background:blue;width:400px;height:200px}
+    #menu_wrap .menu_list{display:none}
+    #menu_wrap .menu{color:#fff;font-size:17px;padding-bottom:10px}
+    #restorant img.active{display:block}
+    #restorant_wrap .stop{display:none}
+    #menu_wrap .menu_list.active{display:block}
+    #menu_wrap .stop,#menu_wrap .play{display:none}
+    #menu_wrap .menu_list .menu.active{color:orange}
+</style>
+<body>
+    <div id="restorant_wrap">
+        <form class="play">
+            <button >PLAY</button>
+        </form>
+        <form class="stop">
+            <button >STOP</button>
+        </form>
+        <div id="restorant">
+           <img src="images/image1.jpg" alt="">
+           <img src="images/image2.jpg" alt="">
+           <img src="images/image3.jpg" alt="">
+           <img src="images/image4.jpg" alt="">
+           <img src="images/image5.jpg" alt="">
+           <img src="images/image6.jpg" alt="">
+        </div>
+    </div>
+    <div id="menu_wrap">
+        <form class="play">
+            <button>PLAY</button>
+        </form>
+        <form class="stop">
+            <button >STOP</button>
+        </form>
+        <ul class="menu_list">
+            <li class="menu">메뉴1 - 1</li>
+            <li class="menu">메뉴1 - 2</li>
+            <li class="menu">메뉴1 - 3</li>
+            <li class="menu">메뉴1 - 4</li>
+            <li class="menu">메뉴1 - 5</li>
+        </ul>
+        <ul class="menu_list">
+            <li class="menu">메뉴2 - 1</li>
+            <li class="menu">메뉴2 - 2</li>
+            <li class="menu">메뉴2 - 3</li>
+            <li class="menu">메뉴2 - 4</li>
+            <li class="menu">메뉴2 - 5</li>
+        </ul>
+        <ul class="menu_list">
+            <li class="menu">메뉴3 - 1</li>
+            <li class="menu">메뉴3 - 2</li>
+            <li class="menu">메뉴3 - 3</li>
+        </ul>
+        <ul class="menu_list">
+            <li class="menu">메뉴4 - 1</li>
+            <li class="menu">메뉴4 - 2</li>
+            <li class="menu">메뉴4 - 3</li>
+            <li class="menu">메뉴4 - 4</li>
+        </ul>
+        <ul class="menu_list">
+            <li class="menu">메뉴5 - 1</li>
+            <li class="menu">메뉴5 - 2</li>
+            <li class="menu">메뉴5 - 3</li>
+            <li class="menu">메뉴5 - 4</li>
+            <li class="menu">메뉴5 - 5</li>
+        </ul>
+        <ul class="menu_list">
+            <li class="menu">김치찌개</li>
+            <li class="menu">부대찌개</li>
+            <li class="menu">차돌된장찌개</li>
+            <li class="menu">메뉴6 - 4</li>
+            <li class="menu">메뉴6 - 5</li>
+            <li class="menu">메뉴6 - 6</li>
+            
+        </ul>
+    </div>
+    <div id="choice"></div>
+
+    <script>
+        const restorant = document.querySelectorAll('#restorant img');
+        const menuList = document.querySelectorAll('.menu_list');
+        const restorantPlayBtn = document.querySelector('#restorant_wrap .play');
+        const restorantStopBtn = document.querySelector('#restorant_wrap .stop');
+        const menuListPlayBtn = document.querySelector('#menu_wrap .play');
+        const menuListStopBtn = document.querySelector('#menu_wrap .stop');
+        const choice = document.querySelector('#choice');
+
+        let random;
+        let i = 0;
+        //시작시, play에 focus주기
+        restorantPlayBtn.children[0].focus();
+
+        // 식당 play
+        restorantPlayBtn.addEventListener('submit',function(e){
+            e.preventDefault();
+            //리셋
+            for(var n = 0; n < menuList.length; n += 1){
+                    menuList[n].classList.remove('active');
+                }
+            choice.textContent = '';
+            
+            restorantStopBtn.style.display = 'block';
+            restorantStopBtn.children[0].focus();
+             
+            //식당 고르기
+            randomRestorant = setInterval(function(){
+                //모든이미지의 클래스를 없앤다.
+                for(var n = 0; n < restorant.length; n += 1){
+                    restorant[n].classList.remove('active');
+                }
+                // 이미지와 인덱스값이 같아지면 0을줘서 무한반복함.
+                if(i >= restorant.length){
+                    i = 0;
+                }
+                //해당되는 곳에만 클래스를 넣어준다.
+                restorant[i].classList.add('active');
+                i++;
+            }, 50);
+
+            restorantPlayBtn.style.display = 'none';
+        });
+        
+        // 식당 stop
+        restorantStopBtn.addEventListener('submit',function(e){
+            i = i - 1;
+            e.preventDefault();
+            clearInterval(randomRestorant);
+            if(
+                 [].indexOf.call(restorant, restorant[i]) ===
+                 [].indexOf.call(menuList, menuList[i])
+             ){
+                 menuList[i].classList.add('active');
+             }
+             menuListPlayBtn.children[0].focus();
+
+             restorantPlayBtn.style.display = 'block';
+             restorantStopBtn.style.display = 'none';
+             menuListPlayBtn.style.display = 'block';
+             menuListPlayBtn.children[0].focus();
+        })
+
+        let j = 0;
+        let menu;
+        // 메뉴 play
+        menuListPlayBtn.addEventListener('submit',function(e){
+            e.preventDefault();
+            menuListStopBtn.style.display = 'block';
+            menuListStopBtn.children[0].focus();
+            randomMenu = setInterval(function(){
+                menu = menuList[i].children; // 메뉴리스트에 들어있는 메뉴
+                console.log(menu,menu.length)
+                for(var n = 0; n < menu.length; n += 1){
+                    menu[n].classList.remove('active');
+                }
+                if(j >= menu.length){
+                    j = 0;
+                }
+                menu[j].classList.add('active');
+                var showmenu = menu[j].textContent;
+                j++;
+                choice.textContent = `오늘점심메뉴는~~~ ${showmenu} 입니다`;
+                }, 50);
+                menuListPlayBtn.style.display = 'block';
+        });
+
+        // 메뉴 stop
+        menuListStopBtn.addEventListener('submit',function(e){
+            e.preventDefault();
+            clearTimeout(randomMenu);
+            restorantPlayBtn.children[0].focus();
+            restorantPlayBtn.style.display = 'block';
+            menuListStopBtn.style.display = 'none';
+            menuListPlayBtn.style.display = 'none';
+        })
+        
+        
+        
+        
+                 
+    </script>
+</body>
+</html>

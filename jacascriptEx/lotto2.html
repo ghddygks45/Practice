@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    label{display:inline-block;width:100px}
+</style>
+<body>
+    <div>
+        <label for="birthday">생년월일</label>
+        <input id="birthday" type="text" onchange="birthdayChange();">
+    </div>
+    <div>
+        <label for="car_number">차번호</label>
+        <input id="car_number" type="text" onchange="carNumberChange();">
+    </div>
+    <div>
+        <label for="family">가족수</label>
+        <input id="family" type="text" onchange="familyChagne();">
+    </div>
+    <div>
+        <label for="phone_number">핸드폰번호</label>
+        <input id="phone_number" type="text" onchange="phoneNumberChange();">
+    </div>
+    <form id="play">
+       <button>번호뽑기</button>
+    </form>
+
+    <script>
+        const birthday = document.querySelector('#birthday');
+        const car_number = document.querySelector('#car_number');
+        const family = document.querySelector('#family');
+        const phone_number = document.querySelector('#phone_number');
+        const play = document.querySelector('#play');
+        
+
+        function birthdayChange(){
+            if(birthday){
+                birthday.value = 
+                    birthday.value.substr(0,2) + ' - ' + 
+                    birthday.value.substr(2,2) + ' - ' + 
+                    birthday.value.substr(4,2);
+                    car_number.focus();
+            }
+        }
+        function carNumberChange(){
+            if(car_number.value.length >= 2){
+                car_number.value = 
+                    car_number.value.substr(0,3) + ' - ' +
+                    car_number.value.substr(3,4);
+                    family.focus();
+            }
+        }
+        function familyChagne(){
+            if(family.value.length <= 2){
+                family.value = family.value + '명';
+                phone_number.focus();
+            } else{
+                alert('가족은 세자리수를 넘길 수 없습니다.');
+                family.value = '';
+            }
+        }
+        function phoneNumberChange(){
+            if(phone_number.value.length >= 10){
+                phone_number.value = 
+                    phone_number.value.substr(0,3) + ' - ' +
+                    phone_number.value.substr(3,4) + ' - ' +
+                    phone_number.value.substr(7,4);
+                    play.children[0].focus();
+            } else{
+                alert('올바른 전화번호 형식이 아닙니다.');
+                phone_number.value = '';
+            }
+        }
+
+        play.addEventListener('submit',function(e){
+            e.preventDefault();
+            Number(birthday.value);
+            console.log(Number(birthday.value), car_number.value, family.value, phone_number.value)
+        })
+    </script>
+</body>
+
+</html>

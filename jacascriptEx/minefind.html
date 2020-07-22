@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{border-collapse:collapse}
+        td{width:30px;height:30px;border:solid 1px #000;text-align:center;background:#444}
+        td.opened{background:#fff}
+    </style>
+</head>
+<body>
+    <input id="hor" type="number" placeholder="가로" value = '10'>
+    <input id="ver" type="number" placeholder="세로" value = '10'>
+    <input id="mine" type="number" placeholder="지뢰" value = '20'>
+    <button id="exec">실행</button>
+    <table>
+        <thead>
+            <tr>
+                <td><span id="timer">0</span>초</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <div id="result"></div>
+
+    <script>
+        var tbody = document.querySelector('tbody');
+        var dataset = [];
+        var 중단플래그 = false;
+        var 열은칸 = 0;
+        document.querySelector('#exec').addEventListener('click',function(){
+            //초기화
+            tbody.innerHTML = ''; //외부
+            dataset = []; //내부
+            document.querySelector('#result').textContent = '';
+            // 가로, 세로, 지뢰 변수정의
+            var hor = parseInt(document.querySelector('#hor').value); //parseInt == 정수를 반환
+            var ver = parseInt(document.querySelector('#ver').value);
+            var mine = parseInt(document.querySelector('#mine').value);
+            console.log(hor, ver, mine);
+
+            // 지뢰 위치 뽑기
+            var 후보군 = Array(hor * ver).fill().map(function(v, i){// 0 부터 ~~ 까지 배열을 만듦 (외워두기)
+                return i;
+            });
+            var 셔플 = []
+            while(후보군.length > hor * ver - mine){
+                var 이동값 = 후보군.splice(Math.floor(Math.random() * 후보군.length), 1)[0];
+                셔플.push(이동값);
+            }
+            
+            // 지뢰 테이블 만들기 
+            for(var i = 0; i < hor; i += 1){
+                var arr = [];
+                var tr = document.createElement('tr');
+                for(var j = 0; j < ver; j += 1){
+                    arr.push(0);
+                    var td = document.createElement('td');
+                    //마우스 오른쪽 클릭
+                    td.addEventListener('contextmenu',function(e){
+                        if(중단플래그) {
+                           return; // 함수가 끝남. 
+                        }
+                        e.preventDefault();
+                        var 부모tr = e.currentTarget.parentNode;
+                        var 부모tbody = e.currentTarget.parentNode.parentNode;
+                        var 칸 = Array.prototype.indexOf.call(부모tr.children, e.currentTarget);
+                        var 줄 = Array.prototype.indexOf.call(부모tbody.children, 부모tr);
+                        console.log(e.currentTarget)
+                        if(e.currentTarget.textContent === '' || e.currentTarget.textContent === 'X'){
+                            e.currentTarget.textContent = '!';
+                        } else if(e.currentTarget.textContent === '!'){
+                            e.currentTarget.textContent = '?';
+                        } else if(e.currentTarget.textContent === '?'){
+                            console.log(dataset[줄][칸])
+                            if(dataset[줄][칸] === 1){
+                                console.log('안녕')
+                                e.currentTarget.textContent = '';
+                            } else{
+                                console.log('안녕2')
+                                e.currentTarget.textContent = 'X';
+                            }
+                        }
+                    });
+                    //마우스 왼쪽 클릭
+                    td.addEventListener('click',function(e){
+                        if(중단플래그) {
+                           return; // 함수가 끝남. 
+                        }
+                        e.currentTarget;
+                        var 부모tr = e.currentTarget.parentNode;
+                        var 부모tbody = e.currentTarget.parentNode.parentNode;
+                        var 칸 = Array.prototype.indexOf.call(부모tr.children, e.currentTarget);
+                        var 줄 = Array.prototype.indexOf.call(부모tbody.children, 부모tr);
+                        //클릭했을 때 주변 지뢰 개수
+                        e.currentTarget.classList.add('opened');
+                        열은칸 = 열은칸 + 1;
+                        if(dataset[줄][칸] === 'X'){
+                            e.currentTarget.textContent = '펑';
+                            document.querySelector('#result').textContent = '실패';
+                            중단플래그 = true; // 게임을 중단하는 변수
+                        } else{
+                            var 주변 = [
+                                dataset[줄][칸 - 1], dataset[줄][칸 + 1]
+                            ];
+                            if(dataset[줄 - 1]){
+                                주변 = 주변.concat([dataset[줄 - 1][칸 - 1], dataset[줄 - 1][칸], dataset[줄 - 1][칸 + 1]]);
+                            }
+                            if(dataset[줄 + 1]){
+                                주변 = 주변.concat([dataset[줄 + 1][칸 - 1], dataset[줄 + 1][칸], dataset[줄 + 1][칸 + 1]]);
+                            }
+                            //클릭된 곳 주변에 X가 몇개인지 알려줌.
+                            var 주변지뢰개수 = 주변.filter(function(v){
+                                return v === 'X'; //만약 ['X','X','X','X']
+                            }).length; // 4개
+                            // 거짓인 값 : false, '', 0, null, undefined, NaN
+                            e.currentTarget.textContent = 주변지뢰개수 || ''; //앞의 값이 거짓이면, '' 를 찍어준다.
+                            //0 주변 8칸 동시 오픈(재귀 함수)
+                            dataset[줄][칸] = 1; //연칸들은 데이터를 1로 바꿈(중복클릭제거)
+                            if(주변지뢰개수 === 0){
+                                var 주변칸 = [];
+                                주변칸 = 주변칸.concat([
+                                    tbody.children[줄].children[칸 - 1],
+                                    tbody.children[줄].children[칸 + 1]
+                                ]);
+                                if(tbody.children[줄 - 1]){
+                                    주변칸 =주변칸.concat([
+                                        tbody.children[줄 - 1].children[칸 - 1],
+                                        tbody.children[줄 - 1].children[칸],
+                                        tbody.children[줄 - 1].children[칸 + 1],
+                                    ]);
+                                }
+                                
+                                if(tbody.children[줄 + 1]){
+                                    주변칸 = 주변칸.concat([
+                                        tbody.children[줄 + 1].children[칸 - 1],
+                                        tbody.children[줄 + 1].children[칸],
+                                        tbody.children[줄 + 1].children[칸 + 1],
+                                    ]);
+                                }
+                                주변칸.filter(function (v){
+                                    return !!v; // 배열에서 0, null, undefined를 제거하는 코드
+                                }).forEach(function(옆칸){
+                                    var 부모tr = 옆칸.parentNode;
+                                    var 부모tbody = 옆칸.parentNode.parentNode;
+                                    var 옆칸칸 = Array.prototype.indexOf.call(부모tr.children, 옆칸);
+                                    var 옆칸줄 = Array.prototype.indexOf.call(부모tbody.children, 부모tr);
+                                    if(dataset[옆칸줄][옆칸칸] !== 1){ //데이터가 1이 아닐 때
+                                        옆칸.click(); // td.addEventListener('click' 에서 옆칸.click이 들어가서 주변지뢰개수가 0이 안될때까지 클릭되는 재귀함수
+                                    }
+                                });
+                            }
+                        }
+                        if(열은칸 === hor * ver - mine){
+                            중단플래그 = true;
+                            document.querySelector('#result').textContent = '승리';
+                        }
+                    })
+                    tr.appendChild(td);
+                }
+                tbody.appendChild(tr);
+                dataset.push(arr) // 2차원배열 만들기 
+                tbody.appendChild(tr) // 2차원테이블 만들기 
+            }
+            // 지뢰 심기
+            for(var k = 0; k < 셔플.length; k++){ // 예 67
+                var 세로 = Math.floor(셔플[k] / 10); // 6
+                var 가로 = 셔플[k] % 10; // 7
+                tbody.children[세로].children[가로].textContent = 'X';
+                dataset[세로][가로] = 'X'
+            }
+            console.log(셔플, dataset)
+        });
+    </script>
+</body>
+</html>

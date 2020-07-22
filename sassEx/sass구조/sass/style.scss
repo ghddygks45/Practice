@@ -1,0 +1,9 @@
+@import 'mixin';
+
+button{width:200px;background:green;
+    @include mobile {
+          width: 100px;
+          background:red
+      }
+}
+

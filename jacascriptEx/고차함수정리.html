@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        const 버튼;
+
+        버튼.addEventListener('click',function(){
+            // 함수가 오는 자리,,
+        })
+
+        // 틀린 함수
+        function clickButton(매개변수){
+            //어떤 동작
+            return undefind;
+        }
+
+        //맞는 함수
+        function clickButton(매개변수){
+            return function(){
+                //어떤 동작
+            }
+        }
+
+        버튼.addEventListener('click', clickButton(매개변수))
+
+        // clickButton(매개변수) 부분은 return값이 들어간다.
+        // return엔 현재 undefind가 있으니 undefind로 대체된다.
+        //  return값이 들어가기 때문에 return을 함수로 만들어준다.
+    </script>
+    
+</body>
+</html>

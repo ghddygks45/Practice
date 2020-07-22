@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="width:100%;padding:10px;box-sizing:border-box">
+        <span style="display:inline-block;width:10%">333</span>
+        <span 
+            style="display:inline-block;max-width:80%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            background:aqua;"
+            >안녕?안녕?안녕?안녕?안녕?안녕?안녕?안녕?안녕?안녕?안녕?녕?안녕?안녕?안녕?안녕?안녕?안녕</span>
+        <span style="display:inline-block;width:5%">1</span>
+    </div>
+    <style>
+        .header_wrap{position:relative;}
+        .header_wrap::before{content:'';top:0;left:0;position:absolute;display:block;background:#999;width:100%;height:200px;z-index:-1;}
+        .box-sizing{box-sizing:border-box;height:100px;padding:10px;border:solid 1px red}
+        .box-sizing>li{box-sizing:border-box}
+        .box-sizing>li>a{display:block;padding:5px;line-height:19px;border:solid 1px blue;box-sizing:border-box}
+    </style>
+    <div class="header_wrap">
+        <div class="gnb">
+            <li><a href="#n">11</a></li>
+            <li><a href="#n">22</a></li>
+            <li><a href="#n">33</a></li>
+            <li><a href="#n">44</a></li>
+            <li><a href="#n">55</a></li>
+        </div>
+    </div>
+
+    <ul class="box-sizing">
+        <li><a href="#n">안녕?</a></li>
+        <li><a href="#n">안녕?</a></li>
+        <li><a href="#n">안녕?</a></li>
+        <li><a href="#n">안녕?</a></li>
+    </ul>
+
+    <script>
+        switch (c){
+            case 10 : alert('10');
+        }
+    </script>
+</body>
+</html>

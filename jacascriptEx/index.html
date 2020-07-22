@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //별찍기(반복문연습)
+        for(var i = 4; i >= -4; i = i - 2){
+           console.log(' '.repeat(Math.abs(i)) + '*'.repeat(5 - Math.abs(i)))
+        }
+
+        //별찍기2(반복문연습)
+        for(i = 5; i > 0; i -=2){
+            console.log(' '.repeat(5 - i / 2) + '*'.repeat(i))
+        }
+        
+        //인덱스 번호얻는방법
+        var aa = ['감자','고구마','딸기','토마토','바나나'];
+        var bb = aa.indexOf(aa[0])
+        var cc = aa.length; 
+        console.log(bb,cc) // 0, 5
+
+        //중복없는 랜덤한 네자리 숫자 뽑는 방법
+        var array = [0,1,2,3,4,5,6,7,8,9];
+        var newarray = [];
+        for(i = 0; i <= 3; i++){
+            var index = Math.floor(Math.random() * array.length); // 랜덤한 정수를 만든다.
+            newarray.push(array[index]); // 뽑히는 index번호에 해당하는 array의 키값을 가져와서 newarray에 push한다.
+            array.splice(index, 1); // 뽑히는 index번호에 해당하는 array를 삭제한다.
+        }
+        console.log(newarray);
+
+        //자료형
+        console.log(typeof('3034')); // typeof, 자료형이 어떤것인지 판별해준다.
+        console.log(('3034').split('')); // split, 문자를 ==> 배열로 바꿔준다.
+        console.log([3,0,4,6].join('')); // join, 배열을 ==> 문자로 바꿔준다.
+        // '문자' === '문자' true
+        // 1(숫자) === 1(숫자) true
+        /////예외, [](객체) === [](객체) flase
+
+        
+        //백틱활용
+        var apple = '사과';
+        var banana = '바나나'
+        console.log(apple + ' 맛있다. ' + banana + ' 는 별루..') // 기본문자열일때
+        console.log(`${apple} 맛있다. ${banana} 는 별루..\n` + `줄바꿈까지`); // 백틱활용
+        //백틱안에은 ${변수} 를 사용할 수 있다.
+
+        
+
+
+    </script>
+</body>
+</html>

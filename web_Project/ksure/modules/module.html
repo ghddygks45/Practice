@@ -1,0 +1,432 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/jquery-1.12.4.min.js"></script>
+    <script src="../js/ui.js"></script>
+    <title>스타일</title>
+</head>
+
+    
+<body>
+    <main> 
+        <div id="container">
+            <div class="location">
+                <div class="inner">
+                    <span class="home">홈</span>
+                </div>
+            </div>
+            <div class="inner_ctr">
+                <!-- aside_lnb -->
+                <aside id="aside">
+                    <h2>TRADE SURE 컨설팅</h2>
+                    <ul>
+                        <li>
+                            <a href="#n">컨설팅 사업안내</a>
+                            <div class="sub_menu">
+                                <ul>
+                                    <li><a href="#n">- 컨설팅 사업안내1</a></li>
+                                    <li><a href="#n">- 컨설팅 사업안내2</a></li>
+                                    <li><a href="#n">- 컨설팅 사업안내3</a></li>
+                                    <li><a href="#n">- 컨설팅 사업안내4</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#n">컨설턴트 소개</a>
+                            <div class="sub_menu">
+                                <ul>
+                                    <li><a href="#n">- 컨설턴트 소개1</a></li>
+                                    <li><a href="#n">- 컨설턴트 소개2</a></li>
+                                    <li><a href="#n">- 컨설턴트 소개3</a></li>
+                                    <li><a href="#n">- 컨설턴트 소개4</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#n">컨설팅 사례</a>
+                            <div class="sub_menu">
+                                <ul>
+                                    <li><a href="#n">- 컨설팅 사례1</a></li>
+                                    <li><a href="#n">- 컨설팅 사례2</a></li>
+                                    <li><a href="#n">- 컨설팅 사례3</a></li>
+                                    <li><a href="#n">- 컨설팅 사례4</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#n">컨설팅 신청</a>
+                            <div class="sub_menu">
+                                <ul>
+                                    <li><a href="#n">- 컨설팅 신청1</a></li>
+                                    <li><a href="#n">- 컨설팅 신청2</a></li>
+                                    <li><a href="#n">- 컨설팅 신청3</a></li>
+                                    <li><a href="#n">- 컨설팅 신청4</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#n">컨설턴트 모집</a>
+                            <div class="sub_menu">
+                                <ul>
+                                    <li><a href="#n">- 컨설턴트 모집1</a></li>
+                                    <li><a href="#n">- 컨설턴트 모집2</a></li>
+                                    <li><a href="#n">- 컨설턴트 모집3</a></li>
+                                    <li><a href="#n">- 컨설턴트 모집4</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </aside>
+                <!-- aside_lnb -->
+                <!-- ctn -->
+                <div class="content">
+                    <div class="ctn_subject">
+                        <h2>2뎁스들어올자리</h2>
+                        <ul class="sns">
+                            <li><a href="#n">페이스북</a></li>
+                            <li><a href="#n">트위터</a></li>
+                            <li><a href="#n">구글</a></li>
+                            <li><a href="#n">질문</a></li>
+                            <li><a href="#n">프린트</a></li>
+                        </ul>
+                    </div>
+                    <div class="section">
+                        <h4 class="tit">검색</h4>
+                        <!-- search_from -->
+                        <div class="search">
+                            <span class="ser_select">
+                                <select name="" id="">
+                                    <option value="제목">제목</option>
+                                </select>
+                            </span>
+                            <span class="ser_input">
+                                <input type="text">
+                            </span>
+                            <button class="search_btn">검색</button>
+                        </div>
+                        <!-- // search_from -->
+                    </div>
+                    <div class="section">
+                        <h4 class="tit">borad_list</h4>
+                        <!-- total -->
+                        <div class="board_info">
+                            <span class="l">Total : <span class="font_color_red">10</span>건</span>
+                            <span class="r">
+                                <select name="" id="">
+                                    <option value="10개씩">10개씩</option>
+                                    <option value="20개씩">20개씩</option>
+                                    <option value="30개씩">30개씩</option>
+                                    <option value="50개씩">50개씩</option>
+                                </select>
+                                <button class="go">Go</button>
+                            </span>
+                        </div>
+                        <!-- // total -->
+                        <!-- table -->
+                        <div class="table_box">
+                            <table class="board">
+                                <caption>번호, 제목, 등록일, 조회수 정보제공</caption>
+                                <colgroup>
+                                    <col style="width:100px;"></col>
+                                    <col style="width:300px;"></col>
+                                    <col style="width:80px;"></col>
+                                    <col style="width:80px;"></col>
+                                </colgroup>    
+                                <thead>
+                                    <tr>
+                                        <th>번호</th>
+                                        <th>제목</th>
+                                        <th>등록일</th>
+                                        <th>조회수</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="mobile_th">번호 : </span>1234</td>
+                                        <td class="text_l">
+                                            <span class="mobile_th">제목 : </span>
+                                            <span class="text_ellips">신생기업의 중국 문화컨텐츠 상품 온라인 마케팅 및 수출의 중국 문화컨텐츠 상품 온라인 마케팅 및 수출의 중국 문화컨텐츠 상품 온라인 마케팅 및 수출</span>
+                                            <span class="new_bo_li"><img src="../images/noticeboard_icon_new.png" alt=""></span>
+                                        </td>
+                                        <td><span class="mobile_th">등록일 : </span>2020-07-03</td>
+                                        <td><span class="mobile_th">조회수 : </span>30</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="mobile_th">번호 : </span>1233</td>
+                                        <td class="text_l">
+                                            <span class="mobile_th">제목 : </span>
+                                            <span class="text_ellips">수출 첫 걸음을 떼다</span>
+                                            <span class="new_bo_li"><img src="../images/noticeboard_icon_new.png" alt=""></span>
+                                        </td>
+                                        <td><span class="mobile_th">등록일 : </span>2020-07-03</td>
+                                        <td><span class="mobile_th">조회수 : </span>10</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="mobile_th">번호 : </span>1232</td>
+                                        <td class="text_l">
+                                            <span class="mobile_th">제목 : </span><span class="text_ellips">신생기업의 중국 문화컨텐츠 상품 온라인 마케팅 및 수출</span>
+                                        </td>
+                                        <td><span class="mobile_th">등록일 : </span>2020-07-03</td>
+                                        <td><span class="mobile_th">조회수 : </span>11</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="mobile_th">번호 : </span>1231</td>
+                                        <td class="text_l">
+                                            <span class="mobile_th">제목 : </span>
+                                            <span class="text_ellips">내수 기업에서 화장품 전문 수출업체로 변신, 도전!</span>
+                                        </td>
+                                        <td><span class="mobile_th">등록일 : </span>2020-07-03</td>
+                                        <td><span class="mobile_th">조회수 : </span>55</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                             <!-- // table -->
+                             <!-- paging -->
+                             <div class="paging">
+                                <button class="paging_btn prev01">
+                                     <img src="/한국무역보험컨설팅/images/paging_icon_fastpreve_pc.png" alt="">
+                                     <span class="blind">첫 페이지로 가기</span>
+                                </button>
+                                <button class="paging_btn prev02">
+                                     <img src="/한국무역보험컨설팅/images/paging_icon_preve_pc.png" alt="">
+                                     <span class="blind">이젠 페이지로 가기</span>
+                                </button>
+                                 <ul class="paging_number">
+                                     <li class="on"><a href="#m">1</a></li>
+                                     <li><a href="#m">2</a></li>
+                                     <li><a href="#m">3</a></li>
+                                     <li><a href="#m">4</a></li>
+                                     <li><a href="#m">5</a></li>
+                                     <li><a href="#m">6</a></li>
+                                     <li><a href="#m">7</a></li>
+                                     <li><a href="#m">8</a></li>
+                                     <li><a href="#m">9</a></li>
+                                     <li><a href="#m">10</a></li>
+                                 </ul>
+                                 <button class="paging_btn next01">
+                                    <img src="/한국무역보험컨설팅/images/paging_icon_next_pc.png" alt="">
+                                    <span class="blind">마지막 페이지로 가기</span>
+                                </button>
+                                <button class="paging_btn next02">
+                                    <img src="/한국무역보험컨설팅/images/paging_icon_fastnext_pc.png" alt="">
+                                    <span class="blind">다음 페이지로 가기</span>
+                                </button>
+                             </div>
+                             <!-- // paging -->
+                        </div>
+                    </div>
+                    <div class="section">
+                        <h4 class="tit">borad_list_view</h4>
+                        <!-- list_view_box -->
+                        <div class="list_view_box">
+                            <!-- table -->
+                            <div class="table_box">
+                                <div class="table">
+                                    <div class="div_thead">
+                                        2019년 상반기 Trade-Sure 컨설팅센터 수출컨설턴트 공개모집
+                                        <img src="../images/noticeboard_icon_new.png" alt="">
+                                    </div>
+                                    <div class="row">
+                                        <div class="div_th">등록일</div>
+                                        <div class="div_td">2019-01-01</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="div_th">마감일</div>
+                                        <div class="div_td">
+                                            <span class="font_color_red">[진행중]</span>
+                                            <span class="font_color_brown">[마감]</span>
+                                        </div>
+                                    </div> 
+                                    <div class="row">
+                                        <div class="div_th">진행상태</div>
+                                        <div class="div_td">홍길동</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="div_th">조회수</div>
+                                        <div class="div_td">홍길동</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // table -->
+                            <div class="list_view_cont">
+                                내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+                                내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+                                내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+                                내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+                                내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+                            </div>
+                            <!-- btn_box -->
+                            <div class="btn_box text_r">
+                                <a href="#n" class="l btn btn_color_brown btn_de">목록</a>
+                                <a href="#n" class="btn btn_color_red btn_de">지원신청</a>
+                            </div>
+                            <!-- // btn_box -->
+                            <div class="list_move">
+                                <a href="#n" class="list_prev text_ellips">
+                                    <span class="move">이전글</span>
+                                    2019년 상반기 Trade-Sure 컨설팅센터 수출컨설턴트 공개모집
+                                </a>
+                                <a href="#n" class="list_next text_ellips">
+                                    <span class="move">다음글</span>
+                                    2019년 상반기 Trade-Sure 컨설팅센터 수출컨설턴트 공개모집
+                                </a>
+                            </div>
+                        </div>
+                        <!-- // list_view_box -->
+                    </div>
+                    <div class="section">
+                        <h4 class="tit">팝업</h4>
+                        <a href="#n" id="layerPopup" class="btn btn_color_red popup_btn btn_de_w">신청하기</a>
+                        <!-- popup -->
+                        <div class="popup_box">
+                            <div id="popup_form">
+                                <div class="popup_head">
+                                    신청하기
+                                </div>
+                                <div class="popup_ctn">
+                                    <div class="popup_st">신청서가 정상적으로 접수되었습니다.</div>
+                                    신청하신 내용은 <span class="font_color_red">마이페이지 > 아카데미 신청내역에서</span> 조회하실 수 있습니다.
+                                    <div class="popup_btn_box">
+                                        <a href="#n" class="btn btn_color_red popup_btn">확인</a>
+                                        <a href="#n" class="btn btn_color_brown popup_btn">신청내역 조회</a>
+                                    </div>
+                                    <a href="#n" class="popup_close">
+                                        <img src="../images/popup_icon_close.png" alt="닫기">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- // popup -->
+                    </div>
+                    <div class="section">
+                        <h4 class="tit">버튼</h4>
+                        <!-- btn_box -->
+                        <div class="btn_box text_c">
+                            <a href="#n" class="btn btn_color_brown btn_de_w">취소</a>
+                            <a href="#n" class="btn btn_color_gray btn_minus">삭제</a>
+                        </div>
+                        <div class="btn_box text_r">
+                            <a href="#n" class="btn btn_color_red btn_plus">추가</a>
+                        </div>
+                        <!-- // btn_box -->
+                    </div>
+                    <div class="section">
+                        <h4 class="tit">기본정보</h4>
+                        <!-- div_table -->
+                        <div class="table_box">
+                            <div class="table">
+                                <div class="row double">
+                                    <div class="row div_cell">
+                                        <div class="div_th">성명</div>
+                                        <div class="div_td">홍길동</div>
+                                    </div>
+                                    <div class="row div_cell">
+                                        <div class="div_th">
+                                            생년월일
+                                            <img class="necessary_icon"src="../images/necessary_icon_img.png" alt="필수정보">
+                                        </div>
+                                        <div class="div_td">
+                                            <div class="birthday">
+                                                <span>
+                                                    <input type="text">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                                <div class="row">
+                                    <div class="div_th">
+                                        휴대폰
+                                        <img class="necessary_icon"src="../images/necessary_icon_img.png" alt="필수정보">
+                                    </div>
+                                    <div class="div_td">
+                                        <div class="phone_form">
+                                            <span class="phone">
+                                                <select name="" id="">
+                                                    <option value="선택">선택</option>
+                                                    <option value="010">010</option>
+                                                </select>
+                                            </span>
+                                            <span class="phone">
+                                                <input type="text">
+                                            </span>
+                                            <span class="phone">
+                                                <input type="text">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="div_th">
+                                        이메일
+                                        <img class="necessary_icon"src="../images/necessary_icon_img.png" alt="필수정보">
+                                    </div>
+                                    <div class="div_td">
+                                        <div class="email_form">
+                                            <span class="email email_id">
+                                                <input type="text">
+                                            </span>
+                                            <span class="email email_ad">
+                                                <input type="text">
+                                            </span>
+                                            <span class="email email_ad">
+                                                <select name="" id="">
+                                                    <option value="직접입력">직접입력</option>
+                                                </select>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row double">
+                                    <div class="div_cell">
+                                        <div class="div_th">
+                                            최종학위 (취득년월)
+                                        </div>
+                                        <div class="div_td">
+                                            <div class="date_form">
+                                                <span class="date year">
+                                                    <select name="" id="">
+                                                        <option value="선택">선택</option>
+                                                        <option value="2020">2020</option>
+                                                    </select>
+                                                </span>
+                                                <span class="date month">
+                                                    <select name="" id="">
+                                                        <option value="선택">선택</option>
+                                                        <option value="1">1</option>
+                                                    </select>
+                                                </span>
+                                                <span class="date day">
+                                                    <select name="" id="">
+                                                        <option value="선택">선택</option>
+                                                        <option value="31">31</option>
+                                                    </select>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>    
+                                    <div class="div_cell">
+                                        <div class="div_th">
+                                            관련분야 근무경력
+                                        </div>
+                                        <div class="div_td">
+                                                <input type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- // div_table -->
+                    </div>
+                </div>
+                <!-- // ctn -->
+            </div>
+        </div>
+    </main>
+</body>
+</html>

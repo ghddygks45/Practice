@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{padding:0;margin:0;text-align:center;color:#fff;font-weight:400;font-size:20px;line-height:300px;}
+        header{background-color:black;height:300px}
+        main .content_1{background-color:aqua;height:300px}
+        main .content_2{background-color:blue;height:300px}
+        main .content_3{background-color:blueviolet;height:300px}
+        footer{background-color:brown}
+        .top{position:fixed;bottom:100px;right:50px;width:80px;height:80px;line-height:80px;background:#fff;color:#000;opacity:0;transition:all 0.35s;cursor:pointer}
+        .top.fadein{opacity:1}
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header>HEADER</header>
+        <main>
+            <section class='content_1'>CONTENT1</section>
+            <section class='content_2'>CONTENT2</section>
+            <section class='content_3'>CONTENT3</section>
+        </main>
+        <footer>FOOTER</footer>
+        <div class="top">top</div>
+    </div>
+    <script> 
+    
+        const topBtn = document.querySelector('.top');
+        const docHeight = document.documentElement.offsetHeight; // 문서의 전체높이
+        let scrollCurrent; 
+        function scrollControls(){
+            scrollCurrent = document.documentElement.scrollTop; // 스크롤 양
+            const headerHeight = document.querySelector('header').offsetHeight;
+            if(scrollCurrent >= headerHeight){
+                topBtn.classList.add('fadein')
+            } else{
+                topBtn.classList.remove('fadein')
+            }
+        }
+
+        function moveTop(){
+            const scrolling = setInterval(function(){
+                if(scrollCurrent != 0){
+                   window.scrollBy(0, -50);
+                   console.log(scrollCurrent)
+                } else{
+                    clearInterval(scrolling);
+                    console.log('클리어')
+                }
+            }, 15);
+            
+        }
+        window.addEventListener('scroll', scrollControls);
+        topBtn.addEventListener('click', moveTop);
+
+       
+    </script>
+</body>
+</html>

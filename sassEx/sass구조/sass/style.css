@@ -1,0 +1,12 @@
+button {
+  width: 200px;
+  background: green;
+}
+
+@media screen and (max-width: 1023px) {
+  button {
+    width: 100px;
+    background: red;
+  }
+}
+/*# sourceMappingURL=style.css.map */

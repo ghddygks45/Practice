@@ -1,0 +1,148 @@
+body{background:#999}
+
+/* 선택자 */
+.a{color:red;
+    ul{ border:1px solid red;
+        >li{ background:pink;
+            a{text-decoration:none;
+                &:hover{color:red}
+                &.bbb{font-size:11px}
+            }
+            &:last-child{background:yellow}
+        }
+    }
+}
+
+/* mixin, include */
+@mixin test{
+    width:100px;height:100px;border:solid 1px red;
+}
+.test {@include test}
+
+@mixin clear{
+    &:after{content:"";display:block;clear:both}    
+}
+.cleartest{ border:solid 3px blue; @include clear;
+    p{
+        float:left; @include test;
+    }
+}
+
+/* 믹스인,매개변수 */
+@mixin border($color){
+    border:solid 1px $color;
+}
+@mixin box($w, $h){
+    width:$w; height:$h;
+}
+
+.border{@include border(red);@include box(200px,100px);
+    >p{@include border(blue)}
+    >span{@include border(yellow)}
+}
+
+/* 보간,문자열일때 */
+/* 틀린예제
+$bx : box;
+div.$bx {border:solid 1px red;}
+*/
+
+/*이 주석이 으로 코드를 가리고 싶을때 가려지지않는 요소가 있다.*/
+//$bx : box;
+//div.#{$bx}{border:solid 1px red}
+
+
+@mixin border($position,$wid,$color){
+    border-#{$position}:$wid solid $color
+}
+.box{height:100px;@include border(right, 2px, red);
+    >p{@include border(bottom, 3px, blue)}
+}
+
+/* 반복문을 활용해 해당 이미지, before넣기*/
+@for $i from 1 to 6{
+    .for_list{
+        li{
+            &.ico#{$i} {background-image:url('ico#{$i}.png');}
+            &:nth-child(#{$i}):before{content:'제목#{$i}';}
+            } 
+    }
+}
+
+/* each 반복문 */
+@each $var in book, zoom, phone{
+    .ico_#{$var}{
+        background:url(images/#{$var}.gif) no-repeat 
+    }
+}
+
+$heading : (
+    h1:30px,
+    h2:20px,
+    h3:15px
+);
+
+@each $ele, $fs in $heading{
+    #{$ele} {
+        font-size:$fs;
+    }
+}
+
+@mixin btn_radius($h, $radius){ padding:0 20px; height:$h; line-height:$h; background:#000;color:#fff;text-align:center;
+    @if $radius{
+        border-radius:$h / 2;
+    }
+}
+.btn{@include btn_radius(30px, true)}
+
+
+@mixin position($x, $y, $z){position:absolute; left:$x; top:$y;z-index:$z;
+    @if $x == 50% and $y == 50%{
+        transform: translate(-50%, -50%);
+    }@else if $x == 50%{
+        transform: translateX(-50%);
+    }@else if $y == 50%{
+        transform: translateY(-50%);
+    }
+}
+
+.if_box{@include position(null, 50%, 1); width:300px;height:300px;background:#000}
+
+
+
+/* 믹스인을 모아보자. */ 
+
+/* 클리어 */
+@mixin clear{
+    &:after{content:'';display:block;clear:both;}
+}
+
+/* 말줄임표 */
+@mixin ellipsis($w, $display) {
+    width:$w;
+    overflow:hidden;
+    display:$display;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+
+/* 미디어 쿼리 */
+@mixin mobile {
+    @media screen and (max-width: #{$breakpoint-mobile}) {
+		@content;
+	}
+  }
+  
+ @mixin tablet {
+    @media screen and (max-width: #{$breakpoint-tablet}) {
+		@content;
+	}
+  }
+  
+@mixin desktop {
+	@media screen and (min-width: #{$breakpoint-desktop}) {
+		@content;
+	}
+}
+
+

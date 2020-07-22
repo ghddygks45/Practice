@@ -1,0 +1,107 @@
+****모바일메뉴 활성화****
+//jquery
+$("#mobile_btn").click(function(){
+    $(".mobile_nav,.page_cover,html").addClass('open');
+  })
+  $("#close_btn,.page_cover").click(function(){
+    $(".mobile_nav,.page_cover,html").removeClass('open');
+  });
+//css
+html.open{overflow:hidden;}
+.mobile_nav.open{right:0;}
+.page_cover.open{display:block;}
+
+--------------------------------------------
+
+*****네비게이션 // 체인사용****
+//jquery
+  $('.nav>ul').mouseover(function(){
+    $('.submenu').stop().slideDown('fast');
+  })
+  .mouseout(function(){
+    $('.submenu').stop().slideUp('fast');
+  })
+
+
+****pc,mobile 이미지변경****
+//html
+<img src="images/logo_m.jpg" alt="로고" class="changeImg"/>
+
+//jquery
+var Wwidth = $(window).width();
+$('.changeImg').each(function(){
+	var oldSrc = $(this).attr("src");
+	if(Wwidth < 1100){
+		var newSrc = oldSrc.replace("_pc.","_m.");
+	} else{
+		var newSrc = oldSrc.replace("_m.","_pc.");
+	}
+	$(this).attr("src",newSrc);
+});
+
+------------------------------------------------------------------------
+
+//each함수 쓸 때,
+$( document ).ready( function() {
+        var i=1
+        $( 'p' ).each( function() {
+          $(this).addClass( 's' + i );
+          i = i + 1;
+        } );
+      } );
+
+each를 쓸때는 html에서 불러온 'p'를 this로 받아 사용해야한다.
+each == this로 받아 쓴다.
+
+-------------------------------------------------------------------------
+
+웹, 자바스크립트 오류
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Errors
+
+
+
+
+-------------------------------------------------------------------------
+
+****TIP****
+
+find를 써서 변수를 지정하는 이유,
+브라우저에서 찾지않고 바로 script안에서 찾기 때문에 찾는데 걸리는
+시간을 단축한다.
+
+$aside = $('aside')
+$button = $aside.find('button')
+
+--------------------------------------------------------------------------
+
+//속성변경
+a.attr('href'), a.attr('src') ... 등등,
+어트리뷰트(속성)를 변경한다.
+
+ex)a.attr('src','b')... // a의 src속성을 b에 넣어준다.
+
+--------------------------------------------------------------------------
+
+애니메이트는 CSS로 transition 주고 
+
+ex) .animation{transition .3s cubic-bezier(0,6,1~~);}
+
+제이쿼리는 cpu로 동작, css는 gpu로 동작 고로 cpu를 쓰지않는 css가 빠르다.
+
+--------------------------------------------------------------------------
+
+outerHeight == 객체의 height와 border까지 잡아줌.
+
+$('div').contents().clone() // div태그안에 있는 contents(요소)를 전부 clone(복사)한다.
+
+--------------------------------------------------------------------------
+
+A.append(B) // A요소의 내용의 뒤에 B를 추가, 만약 B가문서에 없으면 추가
+
+A.appendTo(B) // B요소 내용의 뒤에 A를 추가(이동)
+
+A.prepend(B) // A요소의 내용 앞에 B를 추가(이동)
+
+A.prependTo(B) // B요소 내용 앞에 A를 추가(이동)
+

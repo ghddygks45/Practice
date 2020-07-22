@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrapper{width:400px}
+        .card{display:inline-block;margin-left:20px;width:100px;height:100px}
+        .card-inner{width:100%;height:100%;position:relative;transition:0.8s;transform-style:preserve-3d}
+        .card.flipped .card-inner{transform:rotateY(180deg)}
+        .card-front, .card-back{width:100%;height:100%;position:absolute;backface-visibility:hidden}
+        .card-front{background:aqua}
+        .card-back{transform:rotateY(180deg);border:solid 1px black}
+    </style>
+</head>
+<body>
+    <div id="wrapper"></div>
+    <script>
+        //var 가로 = 4;
+        //var 세로 = 3;
+        var 클릭플래그 = true;
+        var 클릭카드 = [];
+        var 완성카드 = [];
+        var 시작시간;
+        //셔플
+        var 색깔들 = ['red','red','orange','orange','green','green','yellow','yellow','white','white','pink','pink'];
+        색깔후보 = 색깔들.slice(); // 참조관계끊기(얕은복사)
+        var 색깔 = [];
+        function 셔플(){
+            for(i = 0; 색깔후보.length > 0; i += 1){
+                색깔 = 색깔.concat(색깔후보.splice(Math.floor(Math.random() * 색깔후보.length), 1));
+            }
+        }셔플();
+        
+        console.log(색깔)
+
+        function 카드세팅(가로, 세로){
+            클릭플래그 = false; // 세팅끝나기 전에는 실행 할 수 없게 함.
+            for(var i = 0; i < 가로 * 세로; i += 1){
+                var card = document.createElement('div');
+                card.className = 'card';
+                var cardInner = document.createElement('div');
+                cardInner.className = 'card-inner';
+                var cardFront = document.createElement('div');
+                cardFront.className = 'card-front';
+                var cardBack = document.createElement('div');
+                cardBack.className = 'card-back';
+                cardBack.style.backgroundColor = 색깔[i]
+                cardInner.appendChild(cardFront);
+                cardInner.appendChild(cardBack);
+                card.appendChild(cardInner);
+                (function(c){
+                    card.addEventListener('click',function(){
+                        if(클릭플래그 && !완성카드.includes(c)){
+                            c.classList.toggle('flipped');
+                            클릭카드.push(c);
+                            console.log('클릭카드', 클릭카드)
+                            if(클릭카드.length === 2){
+                                if(
+                                    클릭카드[0].querySelector('.card-back').style.backgroundColor ===
+                                    클릭카드[1].querySelector('.card-back').style.backgroundColor
+                                     // 클릭카드[0] === .card 안에 querySelector('.card-back')에 접근, -> backgroundColor에 접근 해서 값을 찾음. (값 : pink, orange)
+                                ){
+                                    완성카드.push(클릭카드[0]);
+                                    완성카드.push(클릭카드[1]);
+                                    console.log('완성카드', 완성카드)
+                                    클릭카드 = [];
+                                    if(완성카드.length === 12){
+                                        var 끝시간 = new Date();
+                                        alert('축하합니다! 성공!' + (끝시간 - 시작시간) / 1000 + '초 걸렸습니다.');                                        
+                                        //게임이 끝난 후 다시 초기화.
+                                        document.querySelector('#wrapper').innerHTML = '';
+                                        색깔후보 = 색깔들.slice(); // 참조관계끊기(얕은복사)
+                                        색깔 = [];
+                                        셔플();
+                                        완성카드 = [];
+                                        카드세팅(가로, 세로);
+                                    }
+                                } else{ // 두 카드의 색깔이 다를 때
+                                    클릭플래그 = false; // 잠깐 클릭 막음
+                                    setTimeout(function(){
+                                        클릭카드[0].classList.remove('flipped');
+                                        클릭카드[1].classList.remove('flipped');
+                                        클릭플래그 = true;
+                                        클릭카드 = []; // 초기화해서 다음 두카드를 비교할 수 있게함.
+                                    }, 1000);
+                                    
+                                }
+                            }
+                        }
+                    });
+                })(card); // 클로저 문제 해결
+                document.querySelector('#wrapper').appendChild(card);
+            }
+            document.querySelectorAll('.card').forEach(function (card, index){ //... querySelectorAll에선 NodeList엔 forEach문이 사용가능 ㄷㄷ;
+                setTimeout(function(){
+                    card.classList.add('flipped');
+                }, 1000 + 100 * index) 
+            })
+            
+                setTimeout(function(){ 
+                    document.querySelectorAll('.card').forEach(function (card, index){
+                        card.classList.remove('flipped')
+                    });
+                    클릭플래그 = true;
+                    시작시간 = new Date();
+                }, 3500)
+        }카드세팅(4,3)
+    </script>
+</body>
+</html>

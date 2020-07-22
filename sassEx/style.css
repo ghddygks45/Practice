@@ -1,0 +1,180 @@
+@charset "UTF-8";
+body {
+  background: #999;
+}
+
+/* 선택자 */
+.a {
+  color: red;
+}
+
+.a ul {
+  border: 1px solid red;
+}
+
+.a ul > li {
+  background: pink;
+}
+
+.a ul > li a {
+  text-decoration: none;
+}
+
+.a ul > li a:hover {
+  color: red;
+}
+
+.a ul > li a.bbb {
+  font-size: 11px;
+}
+
+.a ul > li:last-child {
+  background: yellow;
+}
+
+/* mixin, include */
+.test {
+  width: 100px;
+  height: 100px;
+  border: solid 1px red;
+}
+
+.cleartest {
+  border: solid 3px blue;
+}
+
+.cleartest:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.cleartest p {
+  float: left;
+  width: 100px;
+  height: 100px;
+  border: solid 1px red;
+}
+
+/* 믹스인,매개변수 */
+.border {
+  border: solid 1px red;
+  width: 200px;
+  height: 100px;
+}
+
+.border > p {
+  border: solid 1px blue;
+}
+
+.border > span {
+  border: solid 1px yellow;
+}
+
+/* 보간,문자열일때 */
+/* 틀린예제
+$bx : box;
+div.$bx {border:solid 1px red;}
+*/
+/*이 주석이 으로 코드를 가리고 싶을때 가려지지않는 요소가 있다.*/
+.box {
+  height: 100px;
+  border-right: 2px solid red;
+}
+
+.box > p {
+  border-bottom: 3px solid blue;
+}
+
+/* 반복문을 활용해 해당 이미지, before넣기*/
+.for_list li.ico1 {
+  background-image: url("ico1.png");
+}
+
+.for_list li:nth-child(1):before {
+  content: "제목1";
+}
+
+.for_list li.ico2 {
+  background-image: url("ico2.png");
+}
+
+.for_list li:nth-child(2):before {
+  content: "제목2";
+}
+
+.for_list li.ico3 {
+  background-image: url("ico3.png");
+}
+
+.for_list li:nth-child(3):before {
+  content: "제목3";
+}
+
+.for_list li.ico4 {
+  background-image: url("ico4.png");
+}
+
+.for_list li:nth-child(4):before {
+  content: "제목4";
+}
+
+.for_list li.ico5 {
+  background-image: url("ico5.png");
+}
+
+.for_list li:nth-child(5):before {
+  content: "제목5";
+}
+
+/* each 반복문 */
+.ico_book {
+  background: url(images/book.gif) no-repeat;
+}
+
+.ico_zoom {
+  background: url(images/zoom.gif) no-repeat;
+}
+
+.ico_phone {
+  background: url(images/phone.gif) no-repeat;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 15px;
+}
+
+.btn {
+  padding: 0 20px;
+  height: 30px;
+  line-height: 30px;
+  background: #000;
+  color: #fff;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.if_box {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 300px;
+  height: 300px;
+  background: #000;
+}
+
+/* 믹스인을 모아보자. */
+/* 클리어 */
+/* 말줄임표 */
+/* 미디어 쿼리 */
+/*# sourceMappingURL=style.css.map */

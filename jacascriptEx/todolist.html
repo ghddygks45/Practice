@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{padding:0;margin:0;}
+    ul,li,ol{list-style:none}
+    a{text-decoration:none;color:#fff}
+    #todo{width:500px}
+    #todo_add{position:relative;background:red;padding:10px;color:#fff}
+    #todo_add .subject{text-align:center;margin-bottom:10px}
+    #todo_add .input{border:0;width:100%;height:30px}
+    #todo_add .add{position:absolute;right:10px;width:120px;height:30px;border:0;cursor:pointer}
+    #todo .todolist{position:relative}
+    #todo .todolist:nth-child(odd){background:#666}
+    #todo .todolist:nth-child(even){background:#222}
+    #todo .todolist a{display:block;padding:10px}
+    #todo .todolist .remove{position:absolute;top:0;right:0;width:41px;height:41px;border:0;background:transparent;color:#fff;font-size:18px;cursor:pointer}
+    #todo .todolist .remove:focus,#todo .todolist .remove:hover{background:red}
+    #todo .todolist a:focus,#todo .todolist a:hover{background:#999}
+    #todo .todolist.check a{background:red;text-decoration:line-through}
+    .aa{background:blue;color:#fff}
+</style>
+<body>
+    <div id="todo">
+        <div id="todo_add">
+            <h2 class="subject">To do list</h2>
+            <form>
+                <input type="text" class="input">
+                <button class="add">ADD</button>
+            </form>
+        </div>
+        <ul>
+            <li class="todolist">
+                <a href="#n">list-1</a>
+                <button class="remove">x</button>
+            </li>
+            <li class="todolist">
+                <a href="#n">list-2</a>
+                <button class="remove">x</button>
+            </li>
+            <li class="todolist">
+                <a href="#n">list-3</a>
+                <button class="remove">x</button>
+            </li>
+            <li class="todolist">
+                <a href="#n">list-4</a>
+                <button class="remove">x</button>
+            </li>
+            <li class="todolist">
+                <a href="#n">list-5</a>
+                <button class="remove">x</button>
+            </li>
+        </ul>
+    </div>
+    <script>
+        const input = document.querySelector('#todo_add .input');
+        const add = document.querySelector('#todo_add .add');
+        const form = document.querySelector('#todo_add form');
+        const ul = document.querySelector('#todo ul');
+        const todolist = document.getElementsByClassName('todolist');
+        let remove = document.getElementsByClassName('remove');
+        var aa = document.querySelector('.todolist');
+
+
+        // 'x' 클릭 시 삭제
+        for(var i = 0; i < remove.length; i += 1){
+            remove[i].addEventListener('click',function(e){
+                e.currentTarget.parentNode.remove();
+            })
+        }
+          
+      
+        // list 클릭 시 체크
+            var list = document.querySelector('ul');
+            console.log(list)
+            list.addEventListener('click',function(e){
+                console.log(e.target.parentNode)
+                if(e.target.parentNode.tagName === 'LI'){
+                    e.target.parentNode.classList.toggle('check'); 
+                }
+            }, false)
+           
+
+        form.addEventListener('submit',function(e){
+            e.preventDefault();
+            if(input.value === ''){
+                alert('값을 입력해주세요!')
+            }else{
+                // 만들 요소 변수설정
+                li = document.createElement('li');
+                a = document.createElement('a');
+                button = document.createElement('button');
+                
+                // 요소에 속성주기
+                li.className ='todolist';
+                a.setAttribute('href', '#n');
+                a.textContent = input.value;
+                button.className = 'remove';
+                button.textContent = 'x';
+                
+                //ul에 넣기
+                li.appendChild(a);
+                li.appendChild(button);
+                ul.appendChild(li);
+            }
+            input.value = '';
+
+            for(var i = 0; i < remove.length; i += 1){
+            remove[i].addEventListener('click',function(e){
+                e.currentTarget.parentNode.remove();
+            })
+        }
+            
+        })
+        
+
+    </script>
+</body>
+</html>

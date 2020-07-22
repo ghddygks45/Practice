@@ -1,0 +1,17 @@
+/* font */
+@font-face{font-family:Noto Sans;font-style:normal;font-weight:300;src:local('※'),url(../fonts/NotoSans-Light.woff2) format('woff2'),url(../fonts/NotoSans-Light.woff) format('woff')}
+@font-face{font-family:Noto Sans;font-style:normal;font-weight:400;src:local('※'),url(../fonts/NotoSans-Regular.woff2) format('woff2'),url(../fonts/NotoSans-Regular.woff) format('woff')}
+@font-face{font-family:Noto Sans;font-style:normal;font-weight:500;src:local('※'),url(../fonts/NotoSans-Medium.woff2) format('woff2'),url(../fonts/NotoSans-Medium.woff) format('woff')}
+@font-face{font-family:Noto Sans;font-style:normal;font-weight:700;src:local('※'),url(../fonts/NotoSans-Bold.woff2) format('woff2'),url(../fonts/NotoSans-Bold.woff) format('woff')}
+
+/* reset */
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:none}
+body{-webkit-overflow-scrolling:touch;line-height:1.5;font-family:Noto Sans,Dotum;font-size:13px;font-weight:300;word-break:keep-all;color:#666;}
+h1,h2,h3,h4,h5,h6{line-height:normal;font-weight:normal}
+ul,ol,li{list-style:none}
+img{border:0;vertical-align:top}
+button{border:0;background-color:transparent;vertical-align:top;cursor:pointer;font-family:inherit;font-size:inherit;font-weight:300}
+a{text-decoration:none;color:#666}
+img{border:0;vertical-align:top}
+input[type=text],input[type=search],input[type=password],input[type=button],select{box-sizing:border-box;padding:0 10px;border:0;background-color:#fff;vertical-align:top;font-family:inherit;font-weight:300;color:#666}
